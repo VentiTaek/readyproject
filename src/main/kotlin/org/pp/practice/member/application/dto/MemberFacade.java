@@ -2,6 +2,7 @@ package org.pp.practice.member.application.dto;
 
 import org.pp.practice.common.ApplicationService;
 import org.pp.practice.member.domain.MemberService;
+import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 

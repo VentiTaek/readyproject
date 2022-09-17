@@ -1,0 +1,14 @@
+version: '3.2'
+
+services:
+  db:
+    image: mysql:8.0.23
+    environment:
+      MYSQL_ROOT_HOST: 'localhost'
+      MYSQL_DATABASE: 'test_db'
+      MYSQL_USER: 'test'
+      MYSQL_ALLOW_EMPTY_PASSWORD: '1q2w3e4r!'
+      TZ: Asia/Seoul
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - '3302:3306'

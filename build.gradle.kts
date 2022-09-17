@@ -39,12 +39,18 @@ dependencies {
 
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.h2database:h2")
+    runtimeOnly("mysql:mysql-connector-java")
+
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
     testImplementation("io.rest-assured:rest-assured:4.5.1")
 
+    // test container
+    testImplementation("org.testcontainers:testcontainers:1.17.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.3")
+    testImplementation("org.testcontainers:mysql:1.17.3")
 
 }
 
