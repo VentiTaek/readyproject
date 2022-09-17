@@ -36,14 +36,15 @@ dependencies {
     //guava
     implementation("com.google.guava:guava:31.1-jre")
 
+
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.h2database:h2")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
-//    testImplementation("io.rest-assured:rest-assured:5.2.0")
-//    testimplementation("io.rest-assured:kotlin-extensions:5.2.0")
+    testImplementation("io.rest-assured:rest-assured:4.5.1")
+
 
 }
 
