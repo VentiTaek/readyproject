@@ -10,5 +10,8 @@ data class MemberCreateAddressRequest(
     val end: String,
 )
 
+data class MemberUpdateNameRequest(
+    val name: String,
+)
 
 

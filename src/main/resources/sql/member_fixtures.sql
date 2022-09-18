@@ -1,0 +1,1 @@
+insert into member(id, name, first, end) values(1, "이름", "first", "end");

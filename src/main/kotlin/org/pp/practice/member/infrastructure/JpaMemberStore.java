@@ -1,5 +1,7 @@
 package org.pp.practice.member.infrastructure;
 
+import java.util.Optional;
+
 import org.pp.practice.member.domain.Member;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,10 @@ public class JpaMemberStore implements MemberStore {
     @Override
     public Member save(Member member) {
         return memberRepository.save(member);
+    }
+
+    @Override
+    public Optional<Member> findById(Long id) {
+        return memberRepository.findById(id);
     }
 }

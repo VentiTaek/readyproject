@@ -34,4 +34,8 @@ public class Member extends BaseEntity {
         this.name = name;
         this.address = address;
     }
+
+    public void updateName(String updateName) {
+        this.name = updateName;
+    }
 }

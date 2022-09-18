@@ -1,6 +1,6 @@
 package org.pp.practice.common;
 
-import java.io.File;
+import java.lang.reflect.Type;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.DockerComposeContainer;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import com.fasterxml.jackson.module.kotlin.KotlinModule;
+
 import io.restassured.RestAssured;
+import io.restassured.config.ObjectMapperConfig;
+import io.restassured.mapper.ObjectMapper;
+import io.restassured.mapper.ObjectMapperType;
+import io.restassured.path.json.mapper.factory.Jackson2ObjectMapperFactory;
 
 @Testcontainers
 @ActiveProfiles("test")
@@ -29,9 +29,12 @@ public class AcceptanceTest {
     @Autowired
     private DatabaseCleanUp databaseCleanUp;
 
+
     @BeforeEach
     void setUp() {
         RestAssured.port = this.port;
+        // RestAssured.config().objectMapperConfig(RestAssured.config()
+        //     .objectMapperConfig(new ObjectMapperConfig((ObjectMapper)new ObjectMapperConfig(ObjectMapperType.GSON)))
     }
 
     @AfterEach

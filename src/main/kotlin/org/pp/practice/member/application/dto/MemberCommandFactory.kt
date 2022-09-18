@@ -1,9 +1,13 @@
+@file:JvmName("MemberCommandFactory")
+@file:JvmMultifileClass
+
 package org.pp.practice.member.application.dto
 
 import org.pp.practice.member.domain.Address
 import org.pp.practice.member.domain.Member
 import org.pp.practice.member.presentation.dto.MemberCreateAddressRequest
 import org.pp.practice.member.presentation.dto.MemberCreateRequest
+import org.pp.practice.member.presentation.dto.MemberUpdateNameRequest
 
 /**
  * REQUEST
@@ -40,10 +44,21 @@ fun MemberCreateAddressRequest.toAddress(): MemberAddress =
         end = this.end,
     )
 
+data class MemberUpdate(
+    val name: String,
+)
+
+fun MemberUpdateNameRequest.toUpdate(): MemberUpdate =
+    MemberUpdate(
+        name = this.name
+    )
 
 /**
  * Response
  */
 data class MemberInfo(
-    val id: Long
-)
+    val id: Long,
+    val name: String? = null,
+) {
+    constructor(id: Long) : this(id, null)
+}

@@ -1,10 +1,15 @@
 package org.pp.practice.member.presentation;
 
-import org.pp.practice.member.application.dto.MemberFacade;
-import org.pp.practice.member.application.dto.MemberFactoryKt;
+import org.pp.practice.member.application.dto.MemberCommandFactory;
+import org.pp.practice.member.application.MemberFacade;
 import org.pp.practice.member.application.dto.MemberInfo;
+import org.pp.practice.member.application.dto.MemberUpdate;
 import org.pp.practice.member.presentation.dto.MemberCreateRequest;
 import org.pp.practice.member.presentation.dto.MemberCreateResponse;
+import org.pp.practice.member.presentation.dto.MemberUpdateNameRequest;
+import org.pp.practice.member.presentation.dto.MemberUpdateResponse;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +26,16 @@ public class MemberController {
 
     @PostMapping("/members")
     public MemberCreateResponse create(@RequestBody MemberCreateRequest request) {
-        MemberInfo memberInfo = memberFacade.create(MemberFactoryKt.toCreate(request));
+        MemberInfo memberInfo = memberFacade.create(MemberCommandFactory.toCreate(request));
         return new MemberCreateResponse(memberInfo.getId());
+    }
+
+    @PatchMapping("/members/{id}")
+    public MemberUpdateResponse updateName(
+        @RequestBody MemberUpdateNameRequest memberUpdateNameRequest,
+        @PathVariable Long id) {
+        MemberUpdate memberUpdate = MemberCommandFactory.toUpdate(memberUpdateNameRequest);
+        MemberInfo memberInfo = memberFacade.updateName(memberUpdate, id);
+        return new MemberUpdateResponse(memberInfo.getId(), memberUpdate.getName());
     }
 }
